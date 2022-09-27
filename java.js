@@ -1,5 +1,5 @@
 
-const containerDiv = document.querySelector('.container');
+let containerDiv = document.querySelector('.container');
  
 
 //Crea y coloca los cuadros en la pantalla
@@ -9,7 +9,7 @@ for(let i = 0; i < 256; i++) {
     containerDiv.appendChild(div);
 }
 //Crea una lista de todos los cuadros
-const squares = document.querySelectorAll('.square');
+let squares = document.querySelectorAll('.square');
 
 
 //Agrega un evento a todos los cuadros
@@ -19,29 +19,26 @@ squares.forEach(square => {
     })
 })
 
-const hola = () => {
+const newGrid = () => {
     console.clear();
-    console.log(squares);
-    console.log("HOLA!!");
     let tamano = prompt('Cuantos cuadros de cada lado ocupa tu grid?');
+    if (tamano  >  100 ) {
+        alert("Elige un número menor a 100");
+        return;
+    }
+    deleteGrid();
     createNewGrid(tamano)
 }
 
 
-function deleteGrid () {
+function deleteGrid () {//Elimina todos los cuadros dentro del grid
     squares.forEach(square => {
         containerDiv.removeChild(square);
 
     })
-    
 }
 
-const createNewGrid = (tamano) => {
-    
-    squares.forEach(square => {
-        containerDiv.removeChild(square);
-
-    })
+const createNewGrid = (tamano) => {//Crea un nuevo grid cuando ya está vacío
     if(squares.length !== 0) { 
         for(let i = 0; i < (tamano*tamano); i++) {
         
@@ -50,7 +47,7 @@ const createNewGrid = (tamano) => {
             containerDiv.appendChild(div);
             }
         
-            const squares = document.querySelectorAll('.square');
+            squares = document.querySelectorAll('.square');
         console.log(squares);
         
         squares.forEach(square => {
@@ -58,7 +55,7 @@ const createNewGrid = (tamano) => {
                     square.style.backgroundColor = 'purple';
             })
         })
-    } 
+    } console.log(squares);
     }
 
     
