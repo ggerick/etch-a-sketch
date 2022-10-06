@@ -2,9 +2,10 @@ let containerDiv = document.querySelector('.container');
 let colorSelector = document.querySelector('.colorSelector');
 let botones = document.querySelectorAll('.boton');
 let rainbowButton = document.querySelector('#rainbowmode');
+let colorModeButton = document.querySelector('#colormode');
 // let color = document.getElementById('colorPicker').value;//Color elegido por input
 console.log(rainbowButton);
-
+let colorInitialize = true;
 
     
 const randomColor = () => {//Genera un color aleatoriamente
@@ -14,10 +15,29 @@ const randomColor = () => {//Genera un color aleatoriamente
     let randomColorFull = colorRandom.padStart(6,0);
     return `#${randomColorFull.toUpperCase()}`
 }
+let color;
+const getColor = () => {
+    if(colorInitialize === true)  {//Color picker selector mode
+        color = document.getElementById('colorPicker').value;
+    }
+    else if(colorInitialize === false) {//Rainbow mode
+        color = randomColor();
+    }
+    return color;
+}
 
 rainbowButton.addEventListener('click', () => {
-    let color = randomColor();
-})
+    colorInitialize = false;
+    // console.log(getColor(rainbowButton.value));
+    
+
+});
+
+colorModeButton.addEventListener('click', () => {
+    colorInitialize  = true;
+    // console.log(getColor(colorModeButton.value));
+    
+});
 
 
 //Crea y coloca los cuadros en la pantalla
@@ -32,7 +52,8 @@ let squares = document.querySelectorAll('.square');
 //Agrega un evento a todos los cuadros
 squares.forEach(square => {
     square.addEventListener('mouseover', () => {
-        let color = document.getElementById('colorPicker').value;
+
+        let color = getColor();
         square.style.backgroundColor = color;
     })
 })
@@ -88,7 +109,7 @@ const createNewGrid = (tamano) => {//Crea un nuevo grid cuando ya está vacío
         
         squares.forEach(square => {
             square.addEventListener('mouseover', () => {
-                let color = document.getElementById('colorPicker').value;
+                let color = getColor();
                 square.style.backgroundColor = color;
             })
         })
