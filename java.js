@@ -1,6 +1,24 @@
-
 let containerDiv = document.querySelector('.container');
- 
+let colorSelector = document.querySelector('.colorSelector');
+let botones = document.querySelectorAll('.boton');
+let rainbowButton = document.querySelector('#rainbowmode');
+// let color = document.getElementById('colorPicker').value;//Color elegido por input
+console.log(rainbowButton);
+
+
+    
+const randomColor = () => {//Genera un color aleatoriamente
+    let maxColorValue = 0xFFFFFF;
+    let colorRandom = Math.floor(Math.random() * maxColorValue );
+    colorRandom = colorRandom.toString(16);
+    let randomColorFull = colorRandom.padStart(6,0);
+    return `#${randomColorFull.toUpperCase()}`
+}
+
+rainbowButton.addEventListener('click', () => {
+    let color = randomColor();
+})
+
 
 //Crea y coloca los cuadros en la pantalla
 for(let i = 0; i < 256; i++) {
@@ -10,13 +28,31 @@ for(let i = 0; i < 256; i++) {
 }
 //Crea una lista de todos los cuadros
 let squares = document.querySelectorAll('.square');
-
-
+    
 //Agrega un evento a todos los cuadros
 squares.forEach(square => {
     square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = 'purple';
+        let color = document.getElementById('colorPicker').value;
+        square.style.backgroundColor = color;
     })
+})
+
+colorSelector.addEventListener('mouseover', () => {
+    colorSelector.classList.toggle('is-active');//Activa la clase cuando el mouse entra al elemento
+})
+
+botones.forEach(boton => {
+    boton.addEventListener('mouseover', () => {
+        boton.classList.toggle('is-active-botones');
+    })
+
+    boton.addEventListener('mouseout', () => {
+        boton.classList.toggle('is-active-botones');
+    })
+})
+
+colorSelector.addEventListener('mouseout', () => {
+    colorSelector.classList.toggle('is-active');//Desactiva la clase cuando el mouse sale del elemento
 })
 
 const newGrid = () => {
@@ -52,11 +88,10 @@ const createNewGrid = (tamano) => {//Crea un nuevo grid cuando ya está vacío
         
         squares.forEach(square => {
             square.addEventListener('mouseover', () => {
-                    square.style.backgroundColor = 'purple';
+                let color = document.getElementById('colorPicker').value;
+                square.style.backgroundColor = color;
             })
         })
     } console.log(squares);
     }
 
-    
-    

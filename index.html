@@ -8,10 +8,25 @@
     <script src="/java.js" defer></script>
 </head>
 <body>
-    <button onclick="newGrid()">Reset</button>
-    <div class="container">
+    <header> <h1 class="header">Etch a Sketch</h1></header>
+        <div class="content">
+            <div class="settings">
+                
+                <!-- <div class="colorPicker colorSelector" ></div> -->
+                <div class="colorPicker colorSelector">
+                    <input type="color" value="#333333" id="colorPicker">
+                </div>
+
+            
+            <button class="boton" id="colormode">Color mode</button>
+            <button class="boton" id="rainbowmode">Rainbow mode</button>
+            <button onclick="newGrid()" class="boton">Reset</button>
+            <button class="boton"> </button>
+            <button class="boton"> </button>
+
+            </div>
+        <div class="container"></div>
     </div>
-    
-       
+    <footer class="footer"> <p>Copyright © 2022 ggerick</p></footer>
 </body>
 </html>
