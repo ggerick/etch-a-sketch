@@ -3,11 +3,8 @@ let colorSelector = document.querySelector('.colorSelector');
 let botones = document.querySelectorAll('.boton');
 let rainbowButton = document.querySelector('#rainbowmode');
 let colorModeButton = document.querySelector('#colormode');
-// let color = document.getElementById('colorPicker').value;//Color elegido por input
-console.log(rainbowButton);
+let clearButton = document.querySelector('#clear');
 let colorInitialize = true;
-
-    
 const randomColor = () => {//Genera un color aleatoriamente
     let maxColorValue = 0xFFFFFF;
     let colorRandom = Math.floor(Math.random() * maxColorValue );
@@ -28,24 +25,20 @@ const getColor = () => {
 
 rainbowButton.addEventListener('click', () => {
     colorInitialize = false;
-    // console.log(getColor(rainbowButton.value));
-    
-
 });
 
 colorModeButton.addEventListener('click', () => {
     colorInitialize  = true;
-    // console.log(getColor(colorModeButton.value));
-    
 });
-
-
+let sizeInitial = 500/16;
 //Crea y coloca los cuadros en la pantalla
-for(let i = 0; i < 256; i++) {
+for(let i = 0; i < 256; i++) {//16^2 = 256 
     const div = document.createElement('div');
     div.classList.add('square');//Agregar clase a un nodo
+    div.style.cssText = `width: ${sizeInitial}px; height: ${sizeInitial}px`//El tamaño de cada cuadro
     containerDiv.appendChild(div);
 }
+
 //Crea una lista de todos los cuadros
 let squares = document.querySelectorAll('.square');
     
@@ -96,11 +89,14 @@ function deleteGrid () {//Elimina todos los cuadros dentro del grid
 }
 
 const createNewGrid = (tamano) => {//Crea un nuevo grid cuando ya está vacío
+    let size = 500/tamano;
+    console.log(size);
     if(squares.length !== 0) { 
         for(let i = 0; i < (tamano*tamano); i++) {
         
             const div = document.createElement('div');
             div.classList.add('square');//Agregar clase a un nodo
+            div.style.cssText = `width: ${size}px; height: ${size}px`
             containerDiv.appendChild(div);
             }
         
@@ -116,3 +112,8 @@ const createNewGrid = (tamano) => {//Crea un nuevo grid cuando ya está vacío
     } console.log(squares);
     }
 
+    clearButton.addEventListener('click', () => {//Limpia el grid actual
+        squares.forEach(square => {
+            square.style.backgroundColor = 'papayawhip';
+        })
+    });
